@@ -40,7 +40,7 @@ docker run -v "$(pwd)/config:/config" \
            --name flexget \
            -e PUID=1111 \
            -e PGID=1112 \
-           -e TZ=US/Eastern \
+           -e TZ=America/Los_Angeles \
            --restart unless-stopped \
            bheemboy/flexget:latest
 ```

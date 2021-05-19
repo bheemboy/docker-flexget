@@ -27,7 +27,7 @@ run: build
 	           --name flexget \
 	           -e PUID=1111 \
 	           -e PGID=1112 \
-	           -e TZ=US/Eastern \
+	           -e TZ=America/Los_Angeles \
 	           --restart unless-stopped \
 	           -d \
 	           bheemboy/flexget:latest
