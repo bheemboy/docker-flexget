@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     environment:
-      REPO_NAME: "wastrachan"
+      REPO_NAME: "bheemboy"
       IMAGE_NAME: "flexget"
       IMAGE_VERSION: "3.1.121"
     docker:

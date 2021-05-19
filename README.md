@@ -3,8 +3,10 @@ FlexGet Docker Image
 
 FlexGet in a Docker container, with configuration in a volume, and a configurable UID/GID for said files.
 
-[![](https://circleci.com/gh/wastrachan/docker-flexget.svg?style=svg)](https://circleci.com/gh/wastrachan/docker-flexget)
-[![](https://img.shields.io/docker/pulls/wastrachan/flexget.svg)](https://hub.docker.com/r/wastrachan/flexget)
+<!--
+[![](https://circleci.com/gh/bheemboy/docker-flexget.svg?style=svg)](https://circleci.com/gh/bheemboy/docker-flexget)
+[![](https://img.shields.io/docker/pulls/bheemboy/flexget.svg)](https://hub.docker.com/r/bheemboy/flexget)
+-->
 
 ## Install
 
@@ -12,14 +14,14 @@ FlexGet in a Docker container, with configuration in a volume, and a configurabl
 Pull the latest image from Docker Hub:
 
 ```shell
-docker pull wastrachan/flexget
+docker pull bheemboy/flexget
 ```
 
 #### Manually
 Clone this repository, and run `make build` to build an image:
 
 ```shell
-git clone https://github.com/wastrachan/docker-flexget
+git clone https://github.com/bheemboy/docker-flexget
 cd docker-flexget
 make build
 ```
@@ -40,7 +42,7 @@ docker run -v "$(pwd)/config:/config" \
            -e PGID=1112 \
            -e TZ=US/Eastern \
            --restart unless-stopped \
-           wastrachan/flexget:latest
+           bheemboy/flexget:latest
 ```
 
 
@@ -53,7 +55,7 @@ version: "2"
 
 services:
   flexget:
-    image: wastrachan/flexget
+    image: bheemboy/flexget
     container_name: flexget
     environment:
       - PUID=1111

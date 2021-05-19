@@ -1,5 +1,5 @@
 # Docker FlexGet Image
-# Copyright (c) Winston Astrachan 2021
+# Copyright (c) Bheemboy 2021
 
 help:
 	@echo ""
@@ -18,7 +18,7 @@ help:
 build: .flexget.img
 
 .flexget.img:
-	docker build -t wastrachan/flexget:latest .
+	docker build -t bheemboy/flexget:latest .
 	@touch $@
 
 .PHONY: run
@@ -30,7 +30,7 @@ run: build
 	           -e TZ=US/Eastern \
 	           --restart unless-stopped \
 	           -d \
-	           wastrachan/flexget:latest
+	           bheemboy/flexget:latest
 
 .PHONY: stop
 stop:
@@ -43,4 +43,4 @@ clean:
 
 .PHONY: delete
 delete: clean
-	docker rmi -f wastrachan/flexget
+	docker rmi -f bheemboy/flexget

@@ -1,5 +1,5 @@
 FROM python:3.9-alpine
-LABEL maintainer="Winston Astrachan"
+LABEL maintainer="Sunil Rehman"
 LABEL description="FlexGet on Alpine Linux"
 ARG FLEXGET_VERSION="3.1.107"
 
