@@ -12,13 +12,11 @@ RUN set -eux; \
     apk add --update --no-cache \
         libjpeg \
         zlib \
-        libstdc++ \
-    ; \
+        libstdc++; \
     mkdir \
         /config \
         /download \
-        /flexget \
-    ; \
+        /flexget; \
     pip install -U setuptools pip packaging
 
 VOLUME /config
@@ -39,7 +37,6 @@ RUN set -eux; \
     tar --strip-components=1 -xzvf flexget.tar.gz -C /flexget; \
     cd /flexget; \
     python3 setup.py install; \
-    pip install deluge-client; \
     pip install transmissionrpc; \
     \
     rm -rf /flexget /flexget.tar.gz; \
