@@ -17,6 +17,7 @@ echo ""
 
 # Copy default config files
 if [ ! -f "/config/config.yml" ]; then
+    echo "config.yml not found!!! Using default config.yml..."
     cp /defaults/config.yml /config/config.yml
 fi
 
@@ -30,4 +31,5 @@ sed -i "s/^flexget\:x\:101/flexget\:x\:$PGID/" /etc/group
 # Set permissions
 chown -R $PUID:$PGID /config
 
+echo "Starting Flexget daemon"
 exec "$@"
