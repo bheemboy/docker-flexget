@@ -37,7 +37,7 @@ RUN set -eux; \
     tar --strip-components=1 -xzvf flexget.tar.gz -C /flexget; \
     cd /flexget; \
     python3 setup.py install; \
-    pip install transmissionrpc; \
+    pip install -U transmission-rpc; \
     \
     rm -rf /flexget /flexget.tar.gz; \
     apk del .build-deps
