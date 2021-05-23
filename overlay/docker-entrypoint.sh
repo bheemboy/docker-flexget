@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 set -e
 
-PUID="${PUID:-101}"
-PGID="${PGID:-101}"
+PUID="${PUID:-1000}"
+PGID="${PGID:-1000}"
 export TZ="${TZ:-UTC}"
 
 echo ""
@@ -25,8 +25,8 @@ fi
 rm -f /config/.config-lock
 
 # Set UID/GID of user
-sed -i "s/^flexget\:x\:101\:101/flexget\:x\:$PUID\:$PGID/" /etc/passwd
-sed -i "s/^flexget\:x\:101/flexget\:x\:$PGID/" /etc/group
+sed -i "s/^flexget\:x\:1000\:1000/flexget\:x\:$PUID\:$PGID/" /etc/passwd
+sed -i "s/^flexget\:x\:1000/flexget\:x\:$PGID/" /etc/group
 
 # Set permissions
 chown -R $PUID:$PGID /config

@@ -1,70 +1,31 @@
 FlexGet Docker Image
 ====================
 
-FlexGet in a Docker container, with configuration in a volume, and a configurable UID/GID for said files.
-
-<!--
-[![](https://circleci.com/gh/bheemboy/docker-flexget.svg?style=svg)](https://circleci.com/gh/bheemboy/docker-flexget)
-[![](https://img.shields.io/docker/pulls/bheemboy/flexget.svg)](https://hub.docker.com/r/bheemboy/flexget)
--->
-
-## Install
-
-#### Docker Hub
-Pull the latest image from Docker Hub:
-
-```shell
-docker pull bheemboy/flexget
-```
-
-#### Manually
-Clone this repository, and run `make build` to build an image:
-
-```shell
-git clone https://github.com/bheemboy/docker-flexget
-cd docker-flexget
-make build
-```
-
-If you need to rebuild the image, run `make clean build`.
-
+FlexGet and transmission plugin in a Docker container, with configuration in a volume, and a configurable UID/GID for said files.
 
 ## Run
 
-#### Docker
-Run this image with the `make run` shortcut, or manually with `docker run`.
-
-
-```shell
-docker run -v "$(pwd)/config:/config" \
-           --name flexget \
-           -e PUID=1111 \
-           -e PGID=1112 \
-           -e TZ=America/Los_Angeles \
-           --restart unless-stopped \
-           bheemboy/flexget:latest
-```
-
-
 #### Docker Compose
-If you wish to run this image with docker-compose, an example `docker-compose.yml` might read as follows:
+Run this image with docker-compose, an example `docker-compose.yml` might read as follows:
 
 ```yaml
----
-version: "2"
-
+version: "3"
 services:
-  flexget:
-    image: bheemboy/flexget
-    container_name: flexget
-    environment:
-      - PUID=1111
-      - PGID=1112
-    volumes:
-      - </path/to/config>:/config
-    restart: unless-stopped
+    web:
+        image: bheemboy/flexget
+        container_name: flexget
+        restart: unless-stopped
+        environment:
+            - PUID=1000
+            - PGID=1000
+        dns:
+            - 1.1.1.1
+        volumes:
+            - ~/docker/flexget/:/config
+            - ~/docker/transmission/watch/:/download
+        cap_add: 
+            - NET_ADMIN
 ```
-
 
 ## Configuration
 Configuration files are stored in the `/config` volume. You may wish to mount this volume as a local directory, as shown in the examples above.
@@ -82,7 +43,7 @@ The timezone the container uses defaults to `UTC`, and can be overridden with th
 Volume          | Description
 ----------------|-------------
 `/config`       | Configuration directory
-
+`/download`     | Directry where torrents will be downloaded
 
 ## License
 The content of this project itself is licensed under the [MIT License](LICENSE).

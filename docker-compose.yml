@@ -1,0 +1,16 @@
+version: "3"
+services:
+    web:
+        image: bheemboy/flexget
+        container_name: flexget
+        restart: unless-stopped
+        environment:
+            - PUID=1000
+            - PGID=1000
+        dns:
+            - 1.1.1.1
+        volumes:
+            - ~/docker/flexget/:/config
+            - ~/docker/transmission/watch/:/download
+        cap_add: 
+            - NET_ADMIN
