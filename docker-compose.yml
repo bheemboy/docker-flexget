@@ -1,16 +1,52 @@
 version: "3"
 services:
-    web:
+    transmission:
+        image: haugene/transmission-openvpn
+        container_name: transmission
+        restart: always # unless-stopped
+        dns:
+            - 1.1.1.1
+        ports:
+            - "9091:9091"
+        environment:
+            - TZ=America/Los_Angeles
+            - PUID=1000
+            - PGID=1000
+            - OPENVPN_PROVIDER=PIA
+            - OPENVPN_CONFIG=us_silicon_valley
+            - OPENVPN_USERNAME=${VPN_USER}
+            - OPENVPN_PASSWORD=${VPN_PASSWORD}
+            - "OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60"
+            - TRANSMISSION_SCRAPE_PAUSED_TORRENTS_ENABLED=false
+            - TRANSMISSION_PEER_PORT_RANDOM_ON_START=true
+            - TRANSMISSION_BLOCKLIST_ENABLED=true
+            - TRANSMISSION_BLOCKLIST_URL="http://john.bitsurge.net/public/biglist.p2p.gz"
+            - TRANSMISSION_IDLE_SEEDING_LIMIT_ENABLED=true
+            - TRANSMISSION_RATIO_LIMIT_ENABLED=true
+            - TRANSMISSION_HOME=/config/transmission-home
+            - TRANSMISSION_DOWNLOAD_DIR=/data/Movies
+            - TRANSMISSION_INCOMPLETE_DIR=/config/incomplete
+            - TRANSMISSION_WATCH_DIR=/config/watch
+            - LOCAL_NETWORK=10.10.0.0/16
+        volumes:
+            - ${TRANSMISSION_DATA}:/data
+            - ${TRANSMISSION_CONFIG}/:/config
+        cap_add: 
+            - NET_ADMIN
+
+    flexget:
         image: bheemboy/flexget
         container_name: flexget
         restart: unless-stopped
         environment:
+            - TZ=America/Los_Angeles
             - PUID=1000
             - PGID=1000
         dns:
             - 1.1.1.1
         volumes:
-            - ~/docker/flexget/:/config
-            - ~/docker/transmission/watch/:/download
-        cap_add: 
+            - ${TRANSMISSION_CONFIG}/flexget-config/:/config
+            - ${TRANSMISSION_CONFIG}/watch/:/download
+        cap_add:
             - NET_ADMIN
+
