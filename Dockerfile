@@ -1,7 +1,11 @@
+# Use the following commands to build and push
+# docker build --build-arg FLEXGET_VERSION="3.1.137" -t bheemboy/flexget:latest -t bheemboy/flexget:3.1.137 .
+# docker push --all-tags bheemboy/flexget
+
 FROM python:alpine
 LABEL maintainer="Sunil Rehman"
 LABEL description="FlexGet on Alpine Linux"
-ARG FLEXGET_VERSION="3.1.133"
+ARG FLEXGET_VERSION
 
 # Add users before any software to prevent UID/GID conflicts
 RUN addgroup -S -g 1000 flexget; \
