@@ -1,5 +1,5 @@
 # Use the following commands to build and push
-# docker build --build-arg FLEXGET_VERSION="3.1.137" -t bheemboy/flexget:latest -t bheemboy/flexget:3.1.137 .
+# docker build --build-arg FLEXGET_VERSION="3.1.149" -t bheemboy/flexget:latest -t bheemboy/flexget:3.1.149 .
 # docker push --all-tags bheemboy/flexget
 
 FROM python:alpine
