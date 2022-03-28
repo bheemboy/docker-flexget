@@ -27,7 +27,7 @@ services:
             - TRANSMISSION_DOWNLOAD_DIR=/data/Movies
             - TRANSMISSION_INCOMPLETE_DIR=/config/incomplete
             - TRANSMISSION_WATCH_DIR=/config/watch
-            - LOCAL_NETWORK=10.0.0.0/8
+            - LOCAL_NETWORK=192.168.0.0/16
         volumes:
             - ${TRANSMISSION_DATA}:/data
             - ${TRANSMISSION_CONFIG}/:/config
