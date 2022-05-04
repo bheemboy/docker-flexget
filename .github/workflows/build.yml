@@ -12,4 +12,4 @@ jobs:
 
     steps:
     - name: Send greeting
-      run: echo "${{ github.event.inputs.flexget_version }}\"
+      run: echo "${{ github.event.inputs.flexget_version }}"
