@@ -25,7 +25,7 @@ services:
             - TRANSMISSION_RATIO_LIMIT_ENABLED=true
             - TRANSMISSION_HOME=/config/transmission-home
             - TRANSMISSION_DOWNLOAD_DIR=/data/Movies
-            - TRANSMISSION_INCOMPLETE_DIR=/config/incomplete
+            - TRANSMISSION_INCOMPLETE_DIR=/data/.incomplete
             - TRANSMISSION_WATCH_DIR=/config/watch
             - LOCAL_NETWORK=192.168.0.0/16
         volumes:
