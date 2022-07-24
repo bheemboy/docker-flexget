@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       flexget_version:
+        description: flexget version (e.g., '3.3.21')
         required: true
 
 jobs:
