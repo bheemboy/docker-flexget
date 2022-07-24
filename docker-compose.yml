@@ -35,18 +35,23 @@ services:
             - NET_ADMIN
 
     flexget:
-        image: bheemboy/flexget
+#        image: bheemboy/flexget
+        image: wiserain/flexget
         container_name: flexget
-        restart: unless-stopped
+        restart: on-failure:5
+        ports :
+            - 5050:5050
         environment:
             - TZ=America/Los_Angeles
             - PUID=1000
             - PGID=1000
+            - FG_WEBUI_PASSWD=${FLEXGET_PASSWORD}
         dns:
             - 1.1.1.1
         volumes:
             - ${TRANSMISSION_CONFIG}/flexget-config/:/config
-            - ${TRANSMISSION_CONFIG}/watch/:/download
+#            - ${TRANSMISSION_CONFIG}/watch/:/download
+            - ${TRANSMISSION_CONFIG}/data/:/data
         cap_add:
             - NET_ADMIN
 
