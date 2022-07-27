@@ -49,7 +49,6 @@ services:
             - 1.1.1.1
         volumes:
             - ${TRANSMISSION_CONFIG}/flexget-config/:/config
-            - ${TRANSMISSION_CONFIG}/watch/:/data
         cap_add:
             - NET_ADMIN
 
