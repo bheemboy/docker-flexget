@@ -1,0 +1,35 @@
+web_server:
+  bind: 0.0.0.0
+  port: 5050
+  web_ui: yes
+
+tasks:
+  showrss:
+    rss: http://showrss.info/user/22483.rss?magnets=true&namespaces=true&name=null&quality=null&re=null
+    all_series: yes
+    transmission:
+      host: transmission
+      port: 9091
+      add_paused: no
+      path: /data/TV
+
+  remove-stale-torrents:
+    from_transmission: 
+      host: transmission
+      port: 9091
+    disable: [seen, seen_info_hash]
+    if:
+      - transmission_progress == 100: accept
+      - not transmission_seed_ratio_ok and not transmission_idle_limit_ok: reject
+    transmission:
+      host: transmission
+      port: 9091
+      action: remove
+
+schedules:
+  - tasks: [showrss]
+    schedule:
+      hour: 0,4,16,18,20,21,22
+  - tasks: [remove-stale-torrents]
+    schedule:
+      hour: 6

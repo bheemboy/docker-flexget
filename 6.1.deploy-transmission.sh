@@ -5,17 +5,16 @@ if [ "$(whoami)" != "rehman" ]; then
 fi
 
 # stop and remove any running instances of flexget and transmission
+docker stop flexget
 docker rm -f flexget
+docker stop transmission
 docker rm -f transmission
 
-# remove the folder
-rm -rf /home/rehman/docker/transmission
-
-mkdir -p /home/rehman/docker/transmission/flexget-config
-ln /home/rehman/docker/config.yml /home/rehman/docker/transmission/flexget-config/config.yml
-ln /home/rehman/docker/db-config.sqlite /home/rehman/docker/transmission/flexget-config/db-config.sqlite
-ln -s /home/rehman/docker/transmission.env /home/rehman/docker/transmission/.env
+wget -P /home/rehman/docker/transmission/flexget-config https://raw.githubusercontent.com/bheemboy/docker-flexget/master/config.yml
 wget -P /home/rehman/docker/transmission https://raw.githubusercontent.com/bheemboy/docker-flexget/master/docker-compose.yml
+
+ln -s /home/rehman/docker/.config/transmission/.env /home/rehman/docker/transmission/.env
+ln /home/rehman/docker/.config/transmission/db-config.sqlite /home/rehman/docker/transmission/flexget-config/db-config.sqlite
 
 docker pull bheemboy/flexget
 docker pull haugene/transmission-openvpn
