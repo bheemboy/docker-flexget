@@ -35,7 +35,6 @@ services:
             - NET_ADMIN
 
     flexget:
-#        image: bheemboy/flexget
         image: wiserain/flexget
         container_name: flexget
         restart: on-failure:5
@@ -50,8 +49,7 @@ services:
             - 1.1.1.1
         volumes:
             - ${TRANSMISSION_CONFIG}/flexget-config/:/config
-#            - ${TRANSMISSION_CONFIG}/watch/:/download
-            - ${TRANSMISSION_CONFIG}/data/:/data
+            - ${TRANSMISSION_CONFIG}/watch/:/data
         cap_add:
             - NET_ADMIN
 
