@@ -16,7 +16,7 @@ wget -P /home/rehman/docker/transmission https://raw.githubusercontent.com/bheem
 ln -s /home/rehman/docker/.config/transmission/.env /home/rehman/docker/transmission/.env
 ln /home/rehman/docker/.config/transmission/db-config.sqlite /home/rehman/docker/transmission/flexget-config/db-config.sqlite
 
-docker pull bheemboy/flexget
+docker pull wiserain/flexget
 docker pull haugene/transmission-openvpn
 docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 
